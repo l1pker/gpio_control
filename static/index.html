@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Керування GPIO</title>
+</head>
+<body>
+    <h1>Керування GPIO</h1>
+    <button onclick="fetch('/on')">Увімкнути</button>
+    <button onclick="fetch('/off')">Вимкнути</button>
+    <p id='dht'>Температура та вологість: ...</p>
+    <pre id='logs'></pre>
+    <script>
+        async function updateDHT() {
+            let res = await fetch('/dht');
+            let text = await res.text();
+            document.getElementById('dht').innerText = text;
+        }
+        async function updateLogs() {
+            let res = await fetch('/logs');
+            let text = await res.text();
+            document.getElementById('logs').innerText = text;
+        }
+        setInterval(updateDHT, 5000);
+        setInterval(updateLogs, 5000);
+        updateDHT();
+        updateLogs();
+    </script>
+</body>
+</html>
