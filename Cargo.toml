@@ -8,3 +8,4 @@ tokio = { version = "1", features = ["full"] }
 warp = "0.3"
 rppal = "0.14"
 dht-sensor = "0.1"
+embedded-hal = { version = "0.2", features = ["unproven"] }
